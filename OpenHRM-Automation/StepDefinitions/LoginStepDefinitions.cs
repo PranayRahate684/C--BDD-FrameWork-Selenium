@@ -36,5 +36,11 @@ namespace OpenHRMAutomation.StepDefinitions
         {
             Console.WriteLine("Quick launch");
         }
+        [Then(@"I should not get access to Dashboard page with error message as '([^']*)' text")]
+        public void ThenIShouldNotGetAccessToDashboardPageWithErrorMessageAsText(string expectedError)
+        {
+            Console.WriteLine( "Error message : "+ "Invalid Credentials");
+        }
+
     }
 }
