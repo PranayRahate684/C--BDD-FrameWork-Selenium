@@ -122,10 +122,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("InValidlogin")]
-        public virtual void InValidlogin()
+        [NUnit.Framework.TestCaseAttribute("pranay", "password", "Invalid Credentials", null)]
+        [NUnit.Framework.TestCaseAttribute("JIM", "HALPERT", "Invalid Credentials", null)]
+        public virtual void InValidlogin(string username, string password, string expectedError, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("username", username);
+            argumentsOfScenario.Add("password", password);
+            argumentsOfScenario.Add("expectedError", expectedError);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("InValidlogin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 15
  this.ScenarioInitialize(scenarioInfo);
@@ -151,17 +156,16 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I have a browser open with OrangeHRM Website loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 17
- testRunner.When("I enter valid username as \'ddmin\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I enter valid username as \'{0}\'", username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
- testRunner.And("I enter valid password as \'Admin123\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter valid password as \'{0}\'", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
  testRunner.And("I click on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 20
- testRunner.Then("I should not get access to Dashboard page with error message as \'Invalid Credenti" +
-                        "als\' text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I should not get access to Dashboard page with error message as \'{0}\' text", expectedError), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
